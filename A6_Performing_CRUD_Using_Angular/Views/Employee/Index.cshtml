@@ -1,0 +1,103 @@
+﻿<html ng-app="crudModule">
+@{
+    ViewBag.Title = "Index";
+}
+
+<head title="">
+    <style type="text/css">
+        #tblContainer, #tblcollections, #tblCRUD, td {
+            border: double;
+        }
+
+        th {
+            background-color: darkgray;
+        }
+
+        #dvcollection {
+            height: 500px;
+            overflow-y: scroll;
+        }
+    </style>
+
+    
+</head>
+<h2>Using Angular for Performing CRUD Operations</h2>
+<body>
+    <table id="tblContainer" ng-controller="crudController">
+        <tr>
+            <td>
+                <table id="tblCRUD">
+                    <tr>
+                        <td>
+                            <span>First Name</span>
+                        </td>
+                        <td>
+                            <input type="text" id="eno" required ng-model="FirstName"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Last Name</span>
+                        </td>
+                        <td>
+                            <input type="text" id="ename" required ng-model="LastName" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Date Of Created</span>
+                        </td>
+                        <td>
+                            <input type="text" id="salary" required ng-model="DateOfCreated" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" id="new" value="New" ng-click="clear()" />
+                        </td>
+                        <td>
+                            <input type="button" id="save" value="Save" ng-click="save()" ng-disabled="!(!!FirstName && !!LastName  && !!DateOfCreated)" />
+                        </td>
+                        @*<td>
+                            <input type="button" id="delete" value="Delete" ng-click="delete()" />
+                        </td>*@
+                    </tr>
+                </table>
+                <div>{{Message}}</div>
+            </td>
+            <td>
+                <div id="dvcollection">
+                    <table id="tblcollections">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Date of Created</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="Emp in Employees">
+                            <tr >
+                                <td> <span>{{Emp.FirstName}}</span></td>
+                                <td> <span>{{Emp.LastName}}</span></td>
+                                <td> <span>{{Emp.DateOfCreated}}</span></td>
+                                <td>
+                                    <input type="button" id="Edit" value="Edit" ng-click="get(Emp)" />
+                                </td>
+                                <td>
+                                    <input type="button" id="delete" value="Delete" ng-click="delete2(Emp)" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/angular-route.js"></script>
+<script src="~/Scripts/MyScripts/Module.js"></script>
+<script src="~/Scripts/MyScripts/Service.js"></script>
+<script src="~/Scripts/MyScripts/Controller.js"></script>
